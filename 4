@@ -1,0 +1,21 @@
+<script>
+document.getElementById("btnSignIn").onclick = async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("/api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    alert("Đăng nhập thành công");
+    console.log(data.user);
+  } else {
+    alert(data.message);
+  }
+};
+</script>
